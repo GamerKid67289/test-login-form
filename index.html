@@ -5,52 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login and Signup Form</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-
-        .login-container, .signup-container {
-            max-width: 300px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: #333;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 16px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
+        /* Your styles here */
     </style>
 </head>
 <body>
@@ -83,13 +38,18 @@
     </div>
 
     <script>
+        // Array to store registered users
+        const registeredUsers = [];
+
         function handleLogin(event) {
             event.preventDefault();
-            // Basic login logic (client-side, not secure)
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
 
-            if (username === 'demo' && password === 'demo') {
+            // Check if the user is registered
+            const user = registeredUsers.find(user => user.username === username && user.password === password);
+
+            if (user) {
                 alert('Login successful!');
             } else {
                 alert('Invalid credentials. Please try again.');
@@ -98,11 +58,19 @@
 
         function handleSignup(event) {
             event.preventDefault();
-            // Basic signup logic (client-side, not secure)
             const username = document.getElementById('signupUsername').value;
             const password = document.getElementById('signupPassword').value;
 
-            alert(`User ${username} registered successfully!`);
+            // Check if the username is already taken
+            const isUsernameTaken = registeredUsers.some(user => user.username === username);
+
+            if (isUsernameTaken) {
+                alert('Username already taken. Please choose another one.');
+            } else {
+                // Add the user to the registered users array
+                registeredUsers.push({ username, password });
+                alert(`User ${username} registered successfully!`);
+            }
         }
     </script>
 </body>
