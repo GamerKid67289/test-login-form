@@ -56,7 +56,7 @@
 <body>
     <div class="login-container">
         <h2>Login Form</h2>
-        <form action="login.php" method="post">
+        <form onsubmit="handleLogin(event)">
             <!-- Login form fields -->
             <label for="loginUsername">Username:</label>
             <input type="text" id="loginUsername" name="loginUsername" required>
@@ -70,7 +70,7 @@
 
     <div class="signup-container">
         <h2>Signup Form</h2>
-        <form action="signup.php" method="post">
+        <form onsubmit="handleSignup(event)">
             <!-- Signup form fields -->
             <label for="signupUsername">Username:</label>
             <input type="text" id="signupUsername" name="signupUsername" required>
@@ -81,5 +81,29 @@
             <button type="submit">Sign Up</button>
         </form>
     </div>
+
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            // Basic login logic (client-side, not secure)
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            if (username === 'demo' && password === 'demo') {
+                alert('Login successful!');
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            // Basic signup logic (client-side, not secure)
+            const username = document.getElementById('signupUsername').value;
+            const password = document.getElementById('signupPassword').value;
+
+            alert(`User ${username} registered successfully!`);
+        }
+    </script>
 </body>
 </html>
